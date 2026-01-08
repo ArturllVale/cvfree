@@ -3,8 +3,97 @@
 import { Briefcase, Plus, Trash2 } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
 import SectionWrapper from '@/components/ui/SectionWrapper';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Experiencia } from '@/types/resume';
+
+interface ExperienceItemProps {
+    experiencia: Experiencia;
+    atualizarExperiencia: (id: string, experiencia: Partial<Experiencia>) => void;
+    removerExperiencia: (id: string) => void;
+}
+
+// Memoized component to prevent re-rendering all experience items when one is updated.
+// Reduces re-renders from O(N) to O(1) per keystroke.
+const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExperiencia, removerExperiencia }: ExperienceItemProps) {
+    return (
+        <div className="bg-secondary rounded-lg p-4 animate-slide-in">
+            <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input
+                            type="text"
+                            className="input-field text-sm"
+                            placeholder="Empresa"
+                            value={experiencia.empresa}
+                            onChange={(e) =>
+                                atualizarExperiencia(experiencia.id, { empresa: e.target.value })
+                            }
+                        />
+                        <input
+                            type="text"
+                            className="input-field text-sm"
+                            placeholder="Cargo"
+                            value={experiencia.cargo}
+                            onChange={(e) =>
+                                atualizarExperiencia(experiencia.id, { cargo: e.target.value })
+                            }
+                        />
+                    </div>
+                    <textarea
+                        className="input-field textarea-field text-sm w-full"
+                        placeholder="Descreva suas principais atividades e conquistas..."
+                        rows={3}
+                        value={experiencia.descricao}
+                        onChange={(e) =>
+                            atualizarExperiencia(experiencia.id, { descricao: e.target.value })
+                        }
+                    />
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <input
+                            type="month"
+                            className="input-field text-sm"
+                            value={experiencia.dataInicio}
+                            onChange={(e) =>
+                                atualizarExperiencia(experiencia.id, { dataInicio: e.target.value })
+                            }
+                        />
+                        <input
+                            type="month"
+                            className="input-field text-sm"
+                            disabled={experiencia.atual}
+                            value={experiencia.dataFim || ''}
+                            onChange={(e) =>
+                                atualizarExperiencia(experiencia.id, { dataFim: e.target.value })
+                            }
+                        />
+                        <label className="flex items-center gap-2 text-sm cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={experiencia.atual}
+                                onChange={(e) =>
+                                    atualizarExperiencia(experiencia.id, {
+                                        atual: e.target.checked,
+                                        dataFim: e.target.checked ? undefined : experiencia.dataFim,
+                                    })
+                                }
+                                className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
+                            />
+                            Emprego atual
+                        </label>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    onClick={() => removerExperiencia(experiencia.id)}
+                    className="btn btn-icon btn-ghost text-danger"
+                    aria-label="Remover experiência"
+                >
+                    <Trash2 className="w-4 h-4" />
+                </button>
+            </div>
+        </div>
+    );
+});
 
 export default function ExperienciaSection() {
     const { curriculo, adicionarExperiencia, removerExperiencia, atualizarExperiencia } = useResume();
@@ -56,85 +145,12 @@ export default function ExperienciaSection() {
                 {experiencias.length > 0 && (
                     <div className="space-y-3">
                         {experiencias.map((experiencia) => (
-                            <div
+                            <ExperienceItem
                                 key={experiencia.id}
-                                className="bg-secondary rounded-lg p-4 animate-slide-in"
-                            >
-                                <div className="flex items-start justify-between gap-4">
-                                    <div className="flex-1 space-y-3">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            <input
-                                                type="text"
-                                                className="input-field text-sm"
-                                                placeholder="Empresa"
-                                                value={experiencia.empresa}
-                                                onChange={(e) =>
-                                                    atualizarExperiencia(experiencia.id, { empresa: e.target.value })
-                                                }
-                                            />
-                                            <input
-                                                type="text"
-                                                className="input-field text-sm"
-                                                placeholder="Cargo"
-                                                value={experiencia.cargo}
-                                                onChange={(e) =>
-                                                    atualizarExperiencia(experiencia.id, { cargo: e.target.value })
-                                                }
-                                            />
-                                        </div>
-                                        <textarea
-                                            className="input-field textarea-field text-sm w-full"
-                                            placeholder="Descreva suas principais atividades e conquistas..."
-                                            rows={3}
-                                            value={experiencia.descricao}
-                                            onChange={(e) =>
-                                                atualizarExperiencia(experiencia.id, { descricao: e.target.value })
-                                            }
-                                        />
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                            <input
-                                                type="month"
-                                                className="input-field text-sm"
-                                                value={experiencia.dataInicio}
-                                                onChange={(e) =>
-                                                    atualizarExperiencia(experiencia.id, { dataInicio: e.target.value })
-                                                }
-                                            />
-                                            <input
-                                                type="month"
-                                                className="input-field text-sm"
-                                                disabled={experiencia.atual}
-                                                value={experiencia.dataFim || ''}
-                                                onChange={(e) =>
-                                                    atualizarExperiencia(experiencia.id, { dataFim: e.target.value })
-                                                }
-                                            />
-                                            <label className="flex items-center gap-2 text-sm cursor-pointer">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={experiencia.atual}
-                                                    onChange={(e) =>
-                                                        atualizarExperiencia(experiencia.id, {
-                                                            atual: e.target.checked,
-                                                            dataFim: e.target.checked ? undefined : experiencia.dataFim,
-                                                        })
-                                                    }
-                                                    className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
-                                                />
-                                                Emprego atual
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => removerExperiencia(experiencia.id)}
-                                        className="btn btn-icon btn-ghost text-danger"
-                                        aria-label="Remover experiência"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
+                                experiencia={experiencia}
+                                atualizarExperiencia={atualizarExperiencia}
+                                removerExperiencia={removerExperiencia}
+                            />
                         ))}
                     </div>
                 )}

@@ -20,6 +20,7 @@ export default function DadosPessoaisSection() {
                     <div className="flex items-center gap-4">
                         {dadosPessoais.foto ? (
                             <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-primary/20">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={dadosPessoais.foto} alt="Preview" className="w-full h-full object-cover" />
                                 <button
                                     onClick={() => atualizarDadosPessoais({ foto: undefined })}

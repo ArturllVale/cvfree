@@ -1,6 +1,6 @@
 'use client';
 
-import { Wrench, Plus, Trash2, X } from 'lucide-react';
+import { Wrench, Plus, X } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { useState } from 'react';

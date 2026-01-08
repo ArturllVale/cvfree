@@ -35,6 +35,7 @@ export default function ClassicResume({ data }: ResumeProps) {
                 {dadosPessoais.nomeCompleto && (
                     <header className="flex flex-col items-center border-b-2 border-[#1f2937] pb-6">
                         {dadosPessoais.foto && (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 src={dadosPessoais.foto}
                                 alt={dadosPessoais.nomeCompleto}

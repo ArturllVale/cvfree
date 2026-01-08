@@ -5,6 +5,7 @@ import { useResume } from '@/context/ResumeContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Curriculo } from '@/types/resume';
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
     const { curriculo, carregarCurriculo, resetarCurriculo } = useResume();
@@ -57,12 +58,12 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <div className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                         <FileText className="w-7 h-7 text-primary" />
                         <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                             CVFree
                         </span>
-                    </div>
+                    </Link>
 
                     {/* Desktop Actions */}
                     <nav className="hidden md:flex items-center gap-2">
@@ -115,6 +116,7 @@ export default function Navbar() {
                         onClick={() => setMenuOpen(!menuOpen)}
                         className="mobile-menu-button md:hidden btn btn-ghost btn-icon"
                         aria-label="Menu"
+                        aria-expanded={menuOpen}
                     >
                         {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
@@ -122,7 +124,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu */}
                 {menuOpen && (
-                    <div className="md:hidden py-4 border-t border-border animate-fade-in">
+                    <div className="md:hidden py-4 border-t border-border animate-fade-in bg-card shadow-lg rounded-b-lg">
                         <div className="flex flex-col gap-2">
                             <button
                                 onClick={() => {

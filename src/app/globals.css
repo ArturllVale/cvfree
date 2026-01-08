@@ -63,6 +63,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  transition-property: background-color, color, border-color, fill, stroke;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
 /* Scrollbar personalizada */
@@ -215,7 +218,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 0.5rem;
   color: var(--foreground);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .input-field:focus {
@@ -282,7 +285,7 @@ select {
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   padding: 1.25rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .card:hover {

@@ -37,6 +37,7 @@ export default function ModernResume({ data }: ResumeProps) {
                     {/* Foto e Nome */}
                     <div className="flex flex-col items-center text-center">
                         {dadosPessoais.foto && (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 src={dadosPessoais.foto}
                                 alt={dadosPessoais.nomeCompleto}

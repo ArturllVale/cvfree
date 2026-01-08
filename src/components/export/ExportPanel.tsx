@@ -6,9 +6,9 @@ import { useResume } from '@/context/ResumeContext';
 export default function ExportPanel() {
     const { curriculo } = useResume();
 
-    const nomeArquivo = curriculo.dadosPessoais.nomeCompleto
-        ? `curriculo-${curriculo.dadosPessoais.nomeCompleto.toLowerCase().replace(/\s+/g, '-')}`
-        : 'meu-curriculo';
+    // const nomeArquivo = curriculo.dadosPessoais.nomeCompleto
+    //     ? `curriculo-${curriculo.dadosPessoais.nomeCompleto.toLowerCase().replace(/\s+/g, '-')}`
+    //     : 'meu-curriculo';
 
     const handlePrint = () => {
         const element = document.getElementById('resume-preview-content');

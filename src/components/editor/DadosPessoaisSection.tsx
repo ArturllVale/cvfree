@@ -1,12 +1,15 @@
 'use client';
 
-import { User, Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
+import { useRef } from 'react';
+
+import { User, Mail, Phone, MapPin, Linkedin, Globe, Upload } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 
 export default function DadosPessoaisSection() {
     const { curriculo, atualizarDadosPessoais } = useResume();
     const { dadosPessoais } = curriculo;
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     return (
         <SectionWrapper
@@ -36,15 +39,10 @@ export default function DadosPessoaisSection() {
                         )}
                         <div className="flex-1">
                             <input
+                                ref={fileInputRef}
                                 type="file"
                                 accept="image/*"
-                                className="block w-full text-sm text-gray-500
-                                  file:mr-4 file:py-2 file:px-4
-                                  file:rounded-full file:border-0
-                                  file:text-sm file:font-semibold
-                                  file:bg-primary/10 file:text-primary
-                                  hover:file:bg-primary/20
-                                "
+                                className="hidden"
                                 onChange={(e) => {
                                     const file = e.target.files?.[0];
                                     if (file) {
@@ -60,6 +58,20 @@ export default function DadosPessoaisSection() {
                                     }
                                 }}
                             />
+                            <button
+                                type="button"
+                                onClick={() => fileInputRef.current?.click()}
+                                className="flex items-center justify-center gap-2 w-100 px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
+                                style={{
+                                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
+                                    color: 'white',
+                                    border: 'none',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                <Upload className="w-5 h-5" />
+                                Escolher Foto de Perfil
+                            </button>
                             <p className="text-xs text-muted mt-1">Recomendado: .jpg ou .png, máx 2MB.</p>
                         </div>
                     </div>

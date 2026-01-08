@@ -4,8 +4,8 @@ declare module 'html2pdf.js' {
         filename?: string;
         image?: { type: string; quality: number };
         enableLinks?: boolean;
-        html2canvas?: any;
-        jsPDF?: any;
+        html2canvas?: unknown;
+        jsPDF?: unknown;
     }
 
     interface Html2PdfWorker {

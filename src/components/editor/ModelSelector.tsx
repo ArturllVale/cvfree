@@ -13,7 +13,7 @@ export default function ModelSelector() {
     const { curriculo, atualizarModelo } = useResume();
 
     return (
-        <div className="bg-white dark:bg-card border border-border rounded-xl p-4 mb-4">
+        <div className="bg-card border border-border rounded-xl p-4 mb-4">
             <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                 <LayoutTemplate className="w-4 h-4 text-primary" />
                 Modelo do Currículo
@@ -31,19 +31,19 @@ export default function ModelSelector() {
                                 : "border-transparent bg-secondary"
                         )}
                     >
-                        <div className={cn("w-full h-16 rounded mb-2 border shadow-sm", modelo.cor)}>
+                        <div className={cn("w-full h-16 rounded mb-2 border border-gray-300 shadow-sm", modelo.cor)}>
                             {/* Mini representation */}
                             {modelo.id === 'classico' ? (
                                 <div className="p-1 space-y-1">
-                                    <div className="w-1/2 h-1 bg-gray-300 mx-auto rounded" />
-                                    <div className="w-full h-8 bg-gray-100 rounded" />
+                                    <div className="w-1/2 h-1.5 bg-gray-400 mx-auto rounded" />
+                                    <div className="w-full h-8 bg-gray-200 rounded border border-gray-300" />
                                 </div>
                             ) : (
                                 <div className="flex h-full">
-                                    <div className="w-1/3 bg-slate-200 h-full rounded-l" />
+                                    <div className="w-1/3 bg-slate-400 h-full rounded-l" />
                                     <div className="w-2/3 p-1 space-y-1">
-                                        <div className="w-3/4 h-1 bg-gray-300 rounded" />
-                                        <div className="w-full h-1 bg-gray-100 rounded" />
+                                        <div className="w-3/4 h-1.5 bg-gray-400 rounded" />
+                                        <div className="w-full h-1.5 bg-gray-200 rounded" />
                                     </div>
                                 </div>
                             )}

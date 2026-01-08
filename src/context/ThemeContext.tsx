@@ -18,6 +18,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         // Verificar tema salvo ou preferência do sistema
         const savedTheme = localStorage.getItem('theme') as Theme | null;
         if (savedTheme) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setTheme(savedTheme);
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.documentElement.classList.toggle('dark', savedTheme === 'dark');

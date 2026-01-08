@@ -39,6 +39,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
+                    // eslint-disable-next-line react-hooks/set-state-in-effect
                     setCurriculoState(parsed);
                 } catch (e) {
                     console.error('Erro ao carregar currículo salvo:', e);

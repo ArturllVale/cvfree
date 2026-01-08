@@ -61,7 +61,7 @@ export default function DadosPessoaisSection() {
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="flex items-center justify-center gap-2 w-100 px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
+                                className="flex items-center justify-center gap-2 w-auto px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
                                 style={{
                                     background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
                                     color: 'white',

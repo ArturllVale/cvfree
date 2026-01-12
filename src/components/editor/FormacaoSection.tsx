@@ -64,6 +64,7 @@ export default function FormacaoSection() {
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             <input
                                                 type="text"
+                                                name={`instituicao-${formacao.id}`}
                                                 className="input-field text-sm"
                                                 placeholder="Instituição"
                                                 value={formacao.instituicao}
@@ -73,6 +74,7 @@ export default function FormacaoSection() {
                                             />
                                             <input
                                                 type="text"
+                                                name={`curso-${formacao.id}`}
                                                 className="input-field text-sm"
                                                 placeholder="Curso"
                                                 value={formacao.curso}
@@ -83,8 +85,10 @@ export default function FormacaoSection() {
                                         </div>
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                             <select
+                                                name={`nivel-${formacao.id}`}
                                                 className="input-field select-field text-sm"
                                                 value={formacao.nivel}
+                                                aria-label="Nível da formação"
                                                 onChange={(e) =>
                                                     atualizarFormacao(formacao.id, {
                                                         nivel: e.target.value as Formacao['nivel'],
@@ -99,6 +103,7 @@ export default function FormacaoSection() {
                                             </select>
                                             <input
                                                 type="month"
+                                                name={`dataInicio-${formacao.id}`}
                                                 className="input-field text-sm"
                                                 value={formacao.dataInicio}
                                                 onChange={(e) =>
@@ -107,6 +112,7 @@ export default function FormacaoSection() {
                                             />
                                             <input
                                                 type="month"
+                                                name={`dataFim-${formacao.id}`}
                                                 className="input-field text-sm"
                                                 disabled={formacao.emAndamento}
                                                 value={formacao.dataFim || ''}
@@ -117,6 +123,7 @@ export default function FormacaoSection() {
                                             <label className="flex items-center gap-2 text-sm cursor-pointer">
                                                 <input
                                                     type="checkbox"
+                                                    name={`emAndamento-${formacao.id}`}
                                                     checked={formacao.emAndamento}
                                                     onChange={(e) =>
                                                         atualizarFormacao(formacao.id, {
@@ -150,6 +157,7 @@ export default function FormacaoSection() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <input
                             type="text"
+                            name="new_instituicao"
                             className="input-field"
                             placeholder="Instituição de ensino"
                             value={novaFormacao.instituicao}
@@ -159,6 +167,7 @@ export default function FormacaoSection() {
                         />
                         <input
                             type="text"
+                            name="new_curso"
                             className="input-field"
                             placeholder="Nome do curso"
                             value={novaFormacao.curso}
@@ -169,8 +178,10 @@ export default function FormacaoSection() {
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
                         <select
+                            name="new_nivel"
                             className="input-field select-field"
                             value={novaFormacao.nivel}
+                            aria-label="Nível da nova formação"
                             onChange={(e) =>
                                 setNovaFormacao((prev) => ({
                                     ...prev,
@@ -186,6 +197,7 @@ export default function FormacaoSection() {
                         </select>
                         <input
                             type="month"
+                            name="new_dataInicio"
                             className="input-field"
                             placeholder="Início"
                             value={novaFormacao.dataInicio}
@@ -195,6 +207,7 @@ export default function FormacaoSection() {
                         />
                         <input
                             type="month"
+                            name="new_dataFim"
                             className="input-field"
                             placeholder="Fim"
                             disabled={novaFormacao.emAndamento}
@@ -206,6 +219,7 @@ export default function FormacaoSection() {
                         <label className="flex items-center gap-2 text-sm cursor-pointer">
                             <input
                                 type="checkbox"
+                                name="new_emAndamento"
                                 checked={novaFormacao.emAndamento}
                                 onChange={(e) =>
                                     setNovaFormacao((prev) => ({

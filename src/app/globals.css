@@ -41,6 +41,7 @@
 
 [data-theme="dark"],
 .dark {
+  color-scheme: dark;
   --background: #0f172a;
   --foreground: #f1f5f9;
   --primary: #818cf8;
@@ -277,6 +278,16 @@ select {
     background-color: #1e293b !important;
     color: #f1f5f9 !important;
   }
+
+  /* Fim das regras específicas do tema dark */
+}
+
+/* Força o esquema de cores escuro apenas nos inputs quando em modo dark.
+   Isso faz com que o navegador renderize nativamente o calendário e outros ícones em branco.
+   NÃO use filter: invert() junto com color-scheme: dark, pois anulará o efeito. */
+[data-theme="dark"] .input-field,
+.dark .input-field {
+  color-scheme: dark;
 }
 
 /* Cards */
@@ -430,6 +441,14 @@ select {
   .mobile-menu-button {
     display: none !important;
   }
+}
+
+/* Botão de upload com gradiente */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

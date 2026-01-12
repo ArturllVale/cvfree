@@ -83,6 +83,7 @@ export default function HabilidadesSection() {
                             >
                                 <span className="text-sm font-medium">{habilidade.nome}</span>
                                 <select
+                                    name={`nivel-${habilidade.id}`}
                                     className={cn(
                                         'text-xs px-2 py-1 rounded-md bg-background/50 border-none focus:ring-1 focus:ring-primary cursor-pointer font-medium',
                                         habilidade.nivel === 'basico' && 'text-warning',
@@ -90,6 +91,7 @@ export default function HabilidadesSection() {
                                         habilidade.nivel === 'avancado' && 'text-success'
                                     )}
                                     value={habilidade.nivel}
+                                    aria-label={`Nível da habilidade ${habilidade.nome}`}
                                     onChange={(e) =>
                                         atualizarHabilidade(habilidade.id, {
                                             nivel: e.target.value as Habilidade['nivel'],
@@ -117,6 +119,7 @@ export default function HabilidadesSection() {
                 <div className="flex flex-col sm:flex-row gap-3">
                     <input
                         type="text"
+                        name="new_skill_name"
                         className="input-field flex-1"
                         placeholder="Digite uma habilidade..."
                         value={novaHabilidade.nome}
@@ -126,8 +129,10 @@ export default function HabilidadesSection() {
                         onKeyPress={handleKeyPress}
                     />
                     <select
+                        name="new_skill_level"
                         className="input-field select-field w-full sm:w-40"
                         value={novaHabilidade.nivel}
+                        aria-label="Nível da nova habilidade"
                         onChange={(e) =>
                             setNovaHabilidade((prev) => ({
                                 ...prev,

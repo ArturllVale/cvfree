@@ -22,6 +22,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <input
                             type="text"
+                            name={`empresa-${experiencia.id}`}
                             className="input-field text-sm"
                             placeholder="Empresa"
                             value={experiencia.empresa}
@@ -31,6 +32,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                         />
                         <input
                             type="text"
+                            name={`cargo-${experiencia.id}`}
                             className="input-field text-sm"
                             placeholder="Cargo"
                             value={experiencia.cargo}
@@ -40,6 +42,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                         />
                     </div>
                     <textarea
+                        name={`descricao-${experiencia.id}`}
                         className="input-field textarea-field text-sm w-full"
                         placeholder="Descreva suas principais atividades e conquistas..."
                         rows={3}
@@ -51,6 +54,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         <input
                             type="month"
+                            name={`dataInicio-${experiencia.id}`}
                             className="input-field text-sm"
                             value={experiencia.dataInicio}
                             onChange={(e) =>
@@ -59,6 +63,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                         />
                         <input
                             type="month"
+                            name={`dataFim-${experiencia.id}`}
                             className="input-field text-sm"
                             disabled={experiencia.atual}
                             value={experiencia.dataFim || ''}
@@ -69,6 +74,7 @@ const ExperienceItem = memo(function ExperienceItem({ experiencia, atualizarExpe
                         <label className="flex items-center gap-2 text-sm cursor-pointer">
                             <input
                                 type="checkbox"
+                                name={`atual-${experiencia.id}`}
                                 checked={experiencia.atual}
                                 onChange={(e) =>
                                     atualizarExperiencia(experiencia.id, {
@@ -161,6 +167,7 @@ export default function ExperienciaSection() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <input
                             type="text"
+                            name="new_empresa"
                             className="input-field"
                             placeholder="Nome da empresa"
                             value={novaExperiencia.empresa}
@@ -170,6 +177,7 @@ export default function ExperienciaSection() {
                         />
                         <input
                             type="text"
+                            name="new_cargo"
                             className="input-field"
                             placeholder="Cargo ocupado"
                             value={novaExperiencia.cargo}
@@ -179,6 +187,7 @@ export default function ExperienciaSection() {
                         />
                     </div>
                     <textarea
+                        name="new_descricao"
                         className="input-field textarea-field mb-3 w-full"
                         placeholder="Descreva suas principais atividades e conquistas..."
                         rows={3}
@@ -190,6 +199,7 @@ export default function ExperienciaSection() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3">
                         <input
                             type="month"
+                            name="new_dataInicio"
                             className="input-field"
                             placeholder="Início"
                             value={novaExperiencia.dataInicio}
@@ -199,6 +209,7 @@ export default function ExperienciaSection() {
                         />
                         <input
                             type="month"
+                            name="new_dataFim"
                             className="input-field"
                             placeholder="Fim"
                             disabled={novaExperiencia.atual}
@@ -210,6 +221,7 @@ export default function ExperienciaSection() {
                         <label className="flex items-center gap-2 text-sm cursor-pointer">
                             <input
                                 type="checkbox"
+                                name="new_atual"
                                 checked={novaExperiencia.atual}
                                 onChange={(e) =>
                                     setNovaExperiencia((prev) => ({

@@ -32,6 +32,7 @@ export default function ObjetivoSection() {
                     </label>
                     <textarea
                         id="objetivo"
+                        name="objetivo"
                         className="input-field textarea-field"
                         placeholder="Ex: Busco uma oportunidade para desenvolver minhas habilidades..."
                         rows={4}

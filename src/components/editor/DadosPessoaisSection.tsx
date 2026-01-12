@@ -41,8 +41,10 @@ export default function DadosPessoaisSection() {
                             <input
                                 ref={fileInputRef}
                                 type="file"
+                                name="foto"
                                 accept="image/*"
                                 className="hidden"
+                                aria-label="Carregar foto de perfil"
                                 onChange={(e) => {
                                     const file = e.target.files?.[0];
                                     if (file) {
@@ -61,13 +63,7 @@ export default function DadosPessoaisSection() {
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="flex items-center justify-center gap-2 w-auto px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
-                                style={{
-                                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
-                                    color: 'white',
-                                    border: 'none',
-                                    cursor: 'pointer'
-                                }}
+                                className="btn-gradient flex items-center justify-center gap-2 w-auto px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
                             >
                                 <Upload className="w-5 h-5" />
                                 Escolher Foto de Perfil
@@ -83,11 +79,13 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="nomeCompleto"
+                        name="nomeCompleto"
                         type="text"
                         className="input-field"
                         placeholder="Ex: Maria Silva"
                         value={dadosPessoais.nomeCompleto}
                         onChange={(e) => atualizarDadosPessoais({ nomeCompleto: e.target.value })}
+                        autoComplete="name"
                     />
                 </div>
 
@@ -98,11 +96,13 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="email"
+                        name="email"
                         type="email"
                         className="input-field"
                         placeholder="Ex: maria@email.com"
                         value={dadosPessoais.email}
                         onChange={(e) => atualizarDadosPessoais({ email: e.target.value })}
+                        autoComplete="email"
                     />
                 </div>
 
@@ -113,11 +113,13 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="telefone"
+                        name="telefone"
                         type="tel"
                         className="input-field"
                         placeholder="Ex: (11) 99999-9999"
                         value={dadosPessoais.telefone}
                         onChange={(e) => atualizarDadosPessoais({ telefone: e.target.value })}
+                        autoComplete="tel"
                     />
                 </div>
 
@@ -128,11 +130,13 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="cidade"
+                        name="cidade"
                         type="text"
                         className="input-field"
                         placeholder="Ex: São Paulo"
                         value={dadosPessoais.cidade}
                         onChange={(e) => atualizarDadosPessoais({ cidade: e.target.value })}
+                        autoComplete="address-level2"
                     />
                 </div>
 
@@ -142,9 +146,11 @@ export default function DadosPessoaisSection() {
                     </label>
                     <select
                         id="estado"
+                        name="estado"
                         className="input-field select-field"
                         value={dadosPessoais.estado}
                         onChange={(e) => atualizarDadosPessoais({ estado: e.target.value })}
+                        autoComplete="address-level1"
                     >
                         <option value="">Selecione...</option>
                         <option value="AC">Acre</option>
@@ -184,6 +190,7 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="linkedin"
+                        name="linkedin"
                         type="url"
                         className="input-field"
                         placeholder="Ex: linkedin.com/in/maria"
@@ -199,6 +206,7 @@ export default function DadosPessoaisSection() {
                     </label>
                     <input
                         id="portfolio"
+                        name="portfolio"
                         type="url"
                         className="input-field"
                         placeholder="Ex: meusite.com.br"
